@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable CSV Viewer</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        body {
+            text-align: center;
+            background-image: linear-gradient(red, blue);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editable CSV Viewer</h1>
+    <!-- Buttons for interacting with the table -->
+    <button onclick="fetchCSV()">Load CSV</button>
+    <button onclick="addRow()">Add Row</button>
+    <button onclick="downloadCSV()">Download CSV</button>
+    <table id="csvTable">
+        <thead>
+            <!-- Table headers will be dynamically added -->
+        </thead>
+        <tbody>
+            <!-- Table rows will be dynamically added -->
+        </tbody>
+    </table>
+
+    <h2>Create New CSV</h2>
+    <!-- Controls for setting number of rows and columns -->
+    <div>
+        <label for="columnCount">Number of Columns:</label>
+        <input type="number" id="columnCount" min="1" value="3">
+        <label for="rowCount">Number of Rows:</label>
+        <input type="number" id="rowCount" min="1" value="3">
+        <button onclick="updateTable()">Update Table</button>
+    </div>
+    <table id="newCsvTable">
+        <thead>
+            <tr>
+                <!-- Table headers will be dynamically added -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be dynamically added -->
+        </tbody>
+    </table>
+    <button onclick="downloadNewCSV()">Download New CSV</button>
+
+    <script>
+        // Existing section: Fetch and display CSV from a URL
+        const csvUrl = "https://raw.githubusercontent.com/veothm/csv-web-hosting/main/stuff.csv";
+
+        async function fetchCSV() {
+            try {
+                const response = await fetch(csvUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const csvData = await response.text();
+                parseCSV(csvData);
+            } catch (error) {
+                console.error("Error fetching the CSV file:", error);
+            }
+        }
+
+        function parseCSV(data) {
+            const rows = data.split("\n");
+            const table = document.getElementById("csvTable");
+            const thead = table.querySelector("thead");
+            const tbody = table.querySelector("tbody");
+
+            // Clear existing table data
+            thead.innerHTML = "";
+            tbody.innerHTML = "";
+
+            // Add headers
+            const headers = rows[0].split(",");
+            const headerRow = document.createElement("tr");
+            headers.forEach(header => {
+                const th = document.createElement("th");
+                th.textContent = header.trim();
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            // Add rows
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].trim() === "") continue; // Skip empty rows
+                const cells = rows[i].split(",");
+                const row = document.createElement("tr");
+                cells.forEach(cell => {
+                    const td = document.createElement("td");
+                    td.textContent = cell.trim();
+                    td.contentEditable = "true"; // Make cells editable
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            }
+        }
+
+        function addRow() {
+            const table = document.getElementById("csvTable");
+            const tbody = table.querySelector("tbody");
+            const newRow = document.createElement("tr");
+
+            const columnCount = table.querySelector("thead tr").children.length;
+            for (let i = 0; i < columnCount; i++) {
+                const td = document.createElement("td");
+                td.contentEditable = "true";
+                td.textContent = ""; // Empty cell
+                newRow.appendChild(td);
+            }
+            tbody.appendChild(newRow);
+        }
+
+        function downloadCSV() {
+            const table = document.getElementById("csvTable");
+            let csv = [];
+            const rows = table.querySelectorAll("tr");
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll("th, td");
+                const rowData = [];
+                cells.forEach(cell => rowData.push(cell.textContent));
+                csv.push(rowData.join(","));
+            });
+
+            const csvContent = csv.join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "edited_data.csv";
+            link.click();
+        }
+
+        // Create New CSV Section: Control Rows and Columns
+        function updateTable() {
+            const columnCount = document.getElementById("columnCount").value;
+            const rowCount = document.getElementById("rowCount").value;
+
+            const table = document.getElementById("newCsvTable");
+            const thead = table.querySelector("thead");
+            const tbody = table.querySelector("tbody");
+
+            // Update table headers
+            thead.innerHTML = "";
+            const headerRow = document.createElement("tr");
+            for (let i = 1; i <= columnCount; i++) {
+                const th = document.createElement("th");
+                th.textContent = `Column ${i}`;
+                headerRow.appendChild(th);
+            }
+            thead.appendChild(headerRow);
+
+            // Update table rows
+            tbody.innerHTML = ""; // Clear existing rows
+            for (let i = 0; i < rowCount; i++) {
+                const row = document.createElement("tr");
+                for (let j = 0; j < columnCount; j++) {
+                    const td = document.createElement("td");
+                    td.contentEditable = "true";
+                    td.textContent = ""; // Empty cell
+                    row.appendChild(td);
+                }
+                tbody.appendChild(row);
+            }
+        }
+
+        function downloadNewCSV() {
+            const table = document.getElementById("newCsvTable");
+            let csv = [];
+            const rows = table.querySelectorAll("tr");
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll("th, td");
+                const rowData = [];
+                cells.forEach(cell => rowData.push(cell.textContent));
+                csv.push(rowData.join(","));
+            });
+
+            const csvContent = csv.join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "new_data.csv";
+            link.click();
+        }
+    </script>
+</body>
+</html>
