@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editable Google Sheets Viewer</title>
+    <style>
+      /* Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #e0f7fa; /* Light blue background for a clean look */
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: #1976d2; /* Blue as the primary color */
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: xx-large;
+        transition: color 0.3s, background-color 0.3s;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+        color: #ff5252; /* Red as secondary color on hover */
+      }
+
+      /* Header Styling */
+      h1 {
+        background-color: #1976d2; /* Blue as the primary color */
+        color: white;
+        margin: 0;
+        padding: 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Table Styling */
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #1976d2; /* Blue header for primary color emphasis */
+        color: white;
+      }
+
+      td {
+        background-color: #fff; /* White for standard cells */
+        transition: background-color 0.3s;
+      }
+
+      td[contenteditable="true"] {
+        background-color: #ffebee; /* Light red for editable cells */
+        border: 1px solid #ff5252; /* Red border for editable cells */
+      }
+
+      td:hover {
+        background-color: #e3f2fd; /* Slight hover effect using light blue */
+      }
+
+      /* Button Styling */
+      button {
+        background-color: #1976d2; /* Blue for primary buttons */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      button:hover {
+        background-color: #ff5252; /* Hover effect using red for secondary color */
+        box-shadow: 0px 4px 6px rgba(255, 82, 82, 0.5);
+      }
+
+      /* Footer Styling */
+      footer {
+        background-color: #1976d2; /* Blue footer to match the theme */
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      footer a {
+        color: #ff5252; /* Red links in the footer for secondary color emphasis */
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      footer a:hover {
+        color: #ffffff; /* White on hover for clarity */
+      }
+    </style>
+  </head>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="index.html">Needs</a>
+    <a href="tutorial.html">Tutorial Hub</a>
+  </nav>
+
+  <body>
+    <h1>Editable Google Sheets Viewer</h1>
+    <!-- Buttons for interacting with the table -->
+    <button onclick="fetchCSV()">Load Google Sheet</button>
+    <button onclick="addRow()">Add Row</button>
+
+    <table id="csvTable">
+      <thead>
+        <!-- Table headers will be dynamically added -->
+      </thead>
+      <tbody>
+        <!-- Table rows will be dynamically added -->
+      </tbody>
+    </table>
+
+    <script>
+      // Fetch and display CSV from a published Google Sheet
+      const csvUrl =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT6BL1KPRyqdO6X6Gh73gSumSKCCHkluWqcJ3_xjd09DPHw8H6fTEyQXKxVwmKIWBBA6tCQeeDZ0nvy/pub?gid=0&single=true&output=csv";
+
+      async function fetchCSV() {
+        try {
+          const response = await fetch(csvUrl);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const csvData = await response.text();
+          parseCSV(csvData);
+        } catch (error) {
+          console.error("Error fetching the Google Sheet:", error);
+        }
+      }
+
+      function parseCSV(data) {
+        const rows = data.split("\n");
+        const table = document.getElementById("csvTable");
+        const thead = table.querySelector("thead");
+        const tbody = table.querySelector("tbody");
+
+        // Clear existing table data
+        thead.innerHTML = "";
+        tbody.innerHTML = "";
+
+        // Add headers
+        const headers = rows[0].split(",");
+        const headerRow = document.createElement("tr");
+        headers.forEach((header) => {
+          const th = document.createElement("th");
+          th.textContent = header.trim();
+          headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+
+        // Add rows
+        for (let i = 1; i < rows.length; i++) {
+          if (rows[i].trim() === "") continue; // Skip empty rows
+          const cells = rows[i].split(",");
+          const row = document.createElement("tr");
+          cells.forEach((cell) => {
+            const td = document.createElement("td");
+            td.textContent = cell.trim();
+            td.contentEditable = "true"; // Make cells editable
+            row.appendChild(td);
+          });
+          tbody.appendChild(row);
+        }
+      }
+
+      function addRow() {
+        const table = document.getElementById("csvTable");
+        const tbody = table.querySelector("tbody");
+        const newRow = document.createElement("tr");
+
+        const columnCount = table.querySelector("thead tr").children.length;
+        for (let i = 0; i < columnCount; i++) {
+          const td = document.createElement("td");
+          td.contentEditable = "true";
+          td.textContent = ""; // Empty cell
+          newRow.appendChild(td);
+        }
+        tbody.appendChild(newRow);
+      }
+    </script>
+  </body>
+</html>
