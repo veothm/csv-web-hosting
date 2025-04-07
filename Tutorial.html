@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        nav {
+            background-color: #1976d2;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin: 20px auto;
+            text-align: left;
+            width: 80%;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .section h2 {
+            color: #1976d2;
+        }
+
+        .video {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .resource {
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #1976d2;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="index.html">Needs</a>
+        <a href="tutorial.html">Tutorial Hub</a>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Tutorial Hub</h1>
+        <p>Your one-stop destination for learning and mastering skills!</p>
+    </header>
+
+    <!-- Tutorials Section -->
+    <div class="section">
+        <h2>Text Tutorials</h2>
+        <p><strong>How to Embed an Iframe:</strong></p>
+        <ol>
+            <li>Choose the URL you want to embed.</li>
+            <li>Use the `<iframe>` tag with attributes like `src`, `width`, and `height`.</li>
+            <li>Style it using CSS for better appearance.</li>
+        </ol>
+    </div>
+
+    <!-- Videos Section -->
+    <div class="section video">
+        <h2>Video Tutorials</h2>
+        <iframe src="https://www.youtube.com/embed/ZkTk1Vi6M9I" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="section">
+        <h2>Downloadable Resources</h2>
+        <div class="resource">
+            <p><strong>Google Sheets Guide:</strong> <a href="https://example.com/sheets-guide.pdf" download>Download PDF</a></p>
+        </div>
+        <div class="resource">
+            <p><strong>Iframe Cheat Sheet:</strong> <a href="https://example.com/iframe-cheatsheet.pdf" download>Download PDF</a></p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Tutorial Hub | Powered by our community</p>
+    </footer>
+</body>
+</html>
