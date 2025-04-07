@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editable CSV Viewer</title>
+    <title>Editable Google Sheets Viewer</title>
     <style>
       table {
         width: 50%;
@@ -45,9 +45,9 @@
     </style>
   </head>
   <body>
-    <h1>Editable CSV Viewer</h1>
+    <h1>Editable Google Sheets Viewer</h1>
     <!-- Buttons for interacting with the table -->
-    <button onclick="fetchCSV()">Load CSV</button>
+    <button onclick="fetchCSV()">Load Google Sheet</button>
     <button onclick="addRow()">Add Row</button>
 
     <table id="csvTable">
@@ -60,7 +60,6 @@
     </table>
 
     <h2>Create New CSV</h2>
-    <!-- Controls for setting number of rows and columns -->
     <div>
       <label for="columnCount">Number of Columns:</label>
       <input type="number" id="columnCount" min="1" value="3" />
@@ -82,9 +81,9 @@
     <p id="newCsvContent">New CSV content will appear here...</p>
 
     <script>
-      // Fetch and display CSV from a URL
+      // Fetch and display CSV from a published Google Sheet
       const csvUrl =
-        "https://raw.githubusercontent.com/veothm/csv-web-hosting/main/stuff.csv";
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT6BL1KPRyqdO6X6Gh73gSumSKCCHkluWqcJ3_xjd09DPHw8H6fTEyQXKxVwmKIWBBA6tCQeeDZ0nvy/pub?gid=0&single=true&output=csv";
 
       async function fetchCSV() {
         try {
@@ -95,7 +94,7 @@
           const csvData = await response.text();
           parseCSV(csvData);
         } catch (error) {
-          console.error("Error fetching the CSV file:", error);
+          console.error("Error fetching the Google Sheet:", error);
         }
       }
 
