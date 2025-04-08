@@ -118,11 +118,6 @@
         color: #ffffff; /* White on hover for clarity */
       }
     </style>
-    <link
-      rel="icon"
-      href="https://i1.sndcdn.com/artworks-VIQLZFZbdb8birBF-PEoCDQ-t500x500.jpg"
-      type="image/jpeg"
-    />
   </head>
 
   <nav>
@@ -132,10 +127,16 @@
   </nav>
 
   <body>
+    <link
+      rel="icon"
+      href="https://i1.sndcdn.com/artworks-VIQLZFZbdb8birBF-PEoCDQ-t500x500.jpg"
+      type="image/jpeg"
+    />
     <h1>Editable Google Sheets Viewer</h1>
     <!-- Buttons for interacting with the table -->
     <button onclick="fetchCSV()">Load Google Sheet</button>
     <button onclick="addRow()">Add Row</button>
+    <button onclick="postCSV()">Save to Google Sheet</button>
 
     <table id="csvTable">
       <thead>
@@ -212,6 +213,36 @@
           newRow.appendChild(td);
         }
         tbody.appendChild(newRow);
+      }
+
+      async function postCSV() {
+        const table = document.getElementById("csvTable");
+        let csvData = [];
+        const rows = table.querySelectorAll("tr");
+
+        rows.forEach((row) => {
+          const cells = row.querySelectorAll("th, td");
+          let rowData = [];
+          cells.forEach((cell) => rowData.push(cell.textContent));
+          csvData.push(rowData);
+        });
+
+        try {
+          const response = await fetch("YOUR_WEB_APP_URL", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(csvData),
+          });
+
+          if (response.ok) {
+            alert("Data successfully posted to Google Sheets!");
+          } else {
+            alert("Failed to post data. Check the Google Apps Script configuration.");
+          }
+        } catch (error) {
+          console.error("Error posting data:", error);
+          alert("An error occurred while posting data.");
+        }
       }
     </script>
   </body>
