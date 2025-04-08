@@ -69,11 +69,6 @@
         transition: background-color 0.3s;
       }
 
-      td[contenteditable="true"] {
-        background-color: #ffebee; /* Light red for editable cells */
-        border: 1px solid #ff5252; /* Red border for editable cells */
-      }
-
       td:hover {
         background-color: #e3f2fd; /* Slight hover effect using light blue */
       }
@@ -120,130 +115,132 @@
     </style>
   </head>
 
-  <nav>
-    <a href="home.html">Home</a>
-    <a href="index.html">Needs</a>
-    <a href="Tutorial.html">Tutorial Hub</a>
-  </nav>
-
   <body>
-    <link
-      rel="icon"
-      href="https://i1.sndcdn.com/artworks-VIQLZFZbdb8birBF-PEoCDQ-t500x500.jpg"
-      type="image/jpeg"
-    />
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="index.html">Needs</a>
+      <a href="Tutorial.html">Tutorial Hub</a>
+    </nav>
     <h1>Editable Google Sheets Viewer</h1>
-    <!-- Buttons for interacting with the table -->
-    <button onclick="fetchCSV()">Load Google Sheet</button>
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="postCSV()">Save to Google Sheet</button>
 
-    <table id="csvTable">
+    <!-- Input form -->
+    <table style="margin: 20px auto; border: none">
+      <tr>
+        <td><label for="item">Item:</label></td>
+        <td><input type="text" id="item" placeholder="Enter item name" /></td>
+      </tr>
+      <tr>
+        <td><label for="amount">Amount:</label></td>
+        <td><input type="number" id="amount" placeholder="Enter amount" /></td>
+      </tr>
+    </table>
+    <button onclick="addFirebaseData()">Add Data</button>
+
+    <table id="dataTable">
       <thead>
-        <!-- Table headers will be dynamically added -->
+        <tr>
+          <th>Item</th>
+          <th>Amount</th>
+          <th>Timestamp</th>
+          <th>Actions</th>
+        </tr>
       </thead>
       <tbody>
-        <!-- Table rows will be dynamically added -->
+        <!-- Dynamic rows will be added here -->
       </tbody>
     </table>
 
     <script>
-      // Fetch and display CSV from a published Google Sheet
-      const csvUrl =
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT6BL1KPRyqdO6X6Gh73gSumSKCCHkluWqcJ3_xjd09DPHw8H6fTEyQXKxVwmKIWBBA6tCQeeDZ0nvy/pub?gid=0&single=true&output=csv";
+      const firebaseUrl =
+        "https://veothm-default-rtdb.firebaseio.com/data.json";
+      const deletePassword = "..."; // Password for deletion
 
-      async function fetchCSV() {
-        try {
-          const response = await fetch(csvUrl);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const csvData = await response.text();
-          parseCSV(csvData);
-        } catch (error) {
-          console.error("Error fetching the Google Sheet:", error);
-        }
-      }
+      // POST data to Firebase
+      async function addFirebaseData() {
+        const item = document.getElementById("item").value;
+        const amount = document.getElementById("amount").value;
 
-      function parseCSV(data) {
-        const rows = data.split("\n");
-        const table = document.getElementById("csvTable");
-        const thead = table.querySelector("thead");
-        const tbody = table.querySelector("tbody");
+        if (item && amount) {
+          const data = {
+            item: item,
+            amount: amount,
+            timestamp: Date.now(),
+          };
 
-        // Clear existing table data
-        thead.innerHTML = "";
-        tbody.innerHTML = "";
-
-        // Add headers
-        const headers = rows[0].split(",");
-        const headerRow = document.createElement("tr");
-        headers.forEach((header) => {
-          const th = document.createElement("th");
-          th.textContent = header.trim();
-          headerRow.appendChild(th);
-        });
-        thead.appendChild(headerRow);
-
-        // Add rows
-        for (let i = 1; i < rows.length; i++) {
-          if (rows[i].trim() === "") continue; // Skip empty rows
-          const cells = rows[i].split(",");
-          const row = document.createElement("tr");
-          cells.forEach((cell) => {
-            const td = document.createElement("td");
-            td.textContent = cell.trim();
-            td.contentEditable = "true"; // Make cells editable
-            row.appendChild(td);
-          });
-          tbody.appendChild(row);
-        }
-      }
-
-      function addRow() {
-        const table = document.getElementById("csvTable");
-        const tbody = table.querySelector("tbody");
-        const newRow = document.createElement("tr");
-
-        const columnCount = table.querySelector("thead tr").children.length;
-        for (let i = 0; i < columnCount; i++) {
-          const td = document.createElement("td");
-          td.contentEditable = "true";
-          td.textContent = ""; // Empty cell
-          newRow.appendChild(td);
-        }
-        tbody.appendChild(newRow);
-      }
-
-      async function postCSV() {
-        const table = document.getElementById("csvTable");
-        let csvData = [];
-        const rows = table.querySelectorAll("tr");
-
-        rows.forEach((row) => {
-          const cells = row.querySelectorAll("th, td");
-          let rowData = [];
-          cells.forEach((cell) => rowData.push(cell.textContent));
-          csvData.push(rowData);
-        });
-
-        try {
-          const response = await fetch("YOUR_WEB_APP_URL", {
+          const response = await fetch(firebaseUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(csvData),
+            body: JSON.stringify(data),
           });
 
           if (response.ok) {
-            alert("Data successfully posted to Google Sheets!");
+            alert("Data added successfully!");
+            fetchFirebaseData(); // Refresh the table
           } else {
-            alert("Failed to post data. Check the Google Apps Script configuration.");
+            console.error("Error adding data:", await response.text());
           }
-        } catch (error) {
-          console.error("Error posting data:", error);
-          alert("An error occurred while posting data.");
+        } else {
+          alert("Please fill out both fields before adding data.");
         }
       }
+
+      // GET data from Firebase
+      async function fetchFirebaseData() {
+        const response = await fetch(firebaseUrl);
+        const data = await response.json();
+
+        const tableBody = document.querySelector("#dataTable tbody");
+        tableBody.innerHTML = ""; // Clear table
+
+        for (const key in data) {
+          const row = document.createElement("tr");
+          const itemCell = document.createElement("td");
+          const amountCell = document.createElement("td");
+          const timestampCell = document.createElement("td");
+          const deleteCell = document.createElement("td");
+
+          itemCell.textContent = data[key].item;
+          amountCell.textContent = data[key].amount;
+          timestampCell.textContent = new Date(
+            data[key].timestamp
+          ).toLocaleString();
+
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.onclick = () => removeFirebaseData(key);
+
+          deleteCell.appendChild(deleteButton);
+          row.appendChild(itemCell);
+          row.appendChild(amountCell);
+          row.appendChild(timestampCell);
+          row.appendChild(deleteCell);
+          tableBody.appendChild(row);
+        }
+      }
+
+      // DELETE data from Firebase with password
+      async function removeFirebaseData(key) {
+        const userPassword = prompt("Enter the password to delete data:");
+        if (userPassword === deletePassword) {
+          const deleteUrl = `https://veothm-default-rtdb.firebaseio.com/data/${key}.json`;
+
+          const response = await fetch(deleteUrl, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            alert("Data deleted successfully!");
+            fetchFirebaseData(); // Refresh the table
+          } else {
+            console.error("Error deleting data:", await response.text());
+          }
+        } else {
+          alert("Incorrect password. Deletion not authorized.");
+        }
+      }
+
+      // Initial fetch
+      fetchFirebaseData();
     </script>
   </body>
 </html>
