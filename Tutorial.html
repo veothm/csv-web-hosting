@@ -1,125 +1,806 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial Hub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial Hub - Crafting Recipes</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f3f3f3;
-        }
+      /* Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #e0f7fa; /* Light blue background for a clean look */
+        margin: 0;
+        padding: 0;
+      }
 
-        nav {
-            background-color: #1976d2;
-            padding: 15px;
-            text-align: center;
-        }
+      /* Navigation Bar */
+      nav {
+        background-color: #1976d2; /* Blue as the primary color */
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-        }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: xx-large;
+        transition: color 0.3s, background-color 0.3s;
+      }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+      nav a:hover {
+        text-decoration: underline;
+        color: #ff5252; /* Red as secondary color on hover */
+      }
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+      /* Header Styling */
+      h1 {
+        background-color: #1976d2; /* Blue as the primary color */
+        color: white;
+        margin: 0;
+        padding: 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        .section {
-            margin: 20px auto;
-            text-align: left;
-            width: 80%;
-            background-color: #fff;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-        }
+      /* Table Styling */
+      table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+      }
 
-        .section h2 {
-            color: #1976d2;
-        }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
 
-        .video {
-            text-align: center;
-            margin: 20px 0;
-        }
+      th {
+        background-color: #1976d2; /* Blue header for primary color emphasis */
+        color: white;
+      }
 
-        .resource {
-            margin: 10px 0;
-        }
+      td {
+        background-color: #fff; /* White for standard cells */
+        transition: background-color 0.3s;
+      }
 
-        footer {
-            background-color: #1976d2;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+      td:hover {
+        background-color: #e3f2fd; /* Slight hover effect using light blue */
+      }
+
+      img {
+        max-width: 100px;
+        height: auto;
+      }
+
+      /* Footer Styling */
+      footer {
+        background-color: #1976d2; /* Blue footer to match the theme */
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      footer a {
+        color: #ff5252; /* Red links in the footer for secondary color emphasis */
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      footer a:hover {
+        color: #ffffff; /* White on hover for clarity */
+      }
     </style>
-    
-      <link rel="icon" href="https://s50-hzfi.freeconvert.com/task/67f468932643c56aaa374267/artworks-VIQLZFZbdb8birBF-PEoCDQ-t500x500.ico" type="image/x-icon">
-  
-  
-</head>
-<body>
-  
+  </head>
+  <body>
     <!-- Navigation Bar -->
     <nav>
-        <a href="home.html">Home</a>
-        <a href="index.html">Needs</a>
-        <a href="Tutorial.html">Tutorial Hub</a>
+      <a href="home.html">Home</a>
+      <a href="index.html">Needs</a>
+      <a href="Tutorial.html">Tutorial Hub</a>
     </nav>
 
     <!-- Header Section -->
-    <header>
-        <h1>Tutorial Hub</h1>
-        <p>Your one-stop destination for learning and mastering skills!</p>
-    </header>
+    <h1>Crafting Recipes - Tools and Weapons</h1>
 
-    <!-- Tutorials Section -->
-    <div class="section">
-        <h2>Text Tutorials</h2>
-        <p><strong>How to Embed an Iframe:</strong></p>
-        <ol>
-            <li>Choose the URL you want to embed.</li>
-            <li>Use the `<iframe>` tag with attributes like `src`, `width`, and `height`.</li>
-            <li>Style it using CSS for better appearance.</li>
-        </ol>
+    <!-- Axes Section -->
+    <div class="content">
+      <h2>Axes Crafting Recipes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image and Name</th>
+            <th>Cost</th>
+            <th>Damage</th>
+            <th>Woodcutting Level</th>
+            <th>Usage and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stone Axe</td>
+            <td>2 Chiseled Stones, 1 Tool Handle, 1 Rope</td>
+            <td>5 Damage</td>
+            <td>2 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "It's not very good at chopping stuff up, but
+              it will eventually get the job done!"
+            </td>
+          </tr>
+          <tr>
+            <td>Bronze Axe</td>
+            <td>2 Copper Bars, 1 Tool Handle, 1 Copper Nails</td>
+            <td>10 Damage</td>
+            <td>3 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "A better, more reliable axe."
+            </td>
+          </tr>
+          <tr>
+            <td>Iron Axe</td>
+            <td>2 Iron Bars, 1 Tool Handle, 1 Iron Nails</td>
+            <td>15 Damage</td>
+            <td>4 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "A heavy and powerful axe."
+            </td>
+          </tr>
+          <tr>
+            <td>Steel Axe</td>
+            <td>2 Steel Bars, 1 Tool Handle, 1 Steel Nails</td>
+            <td>20 Damage</td>
+            <td>5 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "A lightweight and strong axe."
+            </td>
+          </tr>
+          <tr>
+            <td>Bluesteel Axe</td>
+            <td>2 Refined Bluesteel, 1 Steel Handle, 1 Bluesteel Nail</td>
+            <td>25 Damage</td>
+            <td>8 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "An axe made out of the strongest material in
+              the world."
+            </td>
+          </tr>
+          <tr>
+            <td>Darksteel Axe</td>
+            <td>2 Darksteel, 1 Steel Handle, 1 Obsidian Nail</td>
+            <td>30 Damage</td>
+            <td>10 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "Darksteel is the strongest, sharpest metal
+              known to civilization. Perfect for chopping wood."
+            </td>
+          </tr>
+          <tr>
+            <td>Adamantite Axe</td>
+            <td>2 Adamantite Bars, 1 Steel Handle, 1 Adamantite Nails</td>
+            <td>35 Damage</td>
+            <td>12 Woodcutting</td>
+            <td>
+              It is used to harvest Trees, Bushes, and Crops. It can also
+              destroy Structures. "Sturdy Adamantite metal, fantastic for
+              splitting wood!"
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Videos Section -->
-    <div class="section video">
-        <h2>Video Tutorials</h2>
-        <iframe src="https://www.youtube.com/embed/ZkTk1Vi6M9I" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    <!-- Pickaxes Section -->
+    <div class="content">
+      <h2>Pickaxes Crafting Recipes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image and Name</th>
+            <th>Cost</th>
+            <th>Mining Level</th>
+            <th>Usage and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stone Pickaxe</td>
+            <td>2 Chiseled Stones, 1 Tool Handle, 1 Rope</td>
+            <td>5 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "You're using a rock on a
+              stick to hit another rock. It's going to take a while."
+            </td>
+          </tr>
+          <tr>
+            <td>Bronze Pickaxe</td>
+            <td>2 Copper Bars, 1 Tool Handle, 1 Copper Nails</td>
+            <td>25 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "A better, more reliable
+              pickaxe."
+            </td>
+          </tr>
+          <tr>
+            <td>Iron Pickaxe</td>
+            <td>2 Iron Bars, 1 Tool Handle, 1 Iron Nails</td>
+            <td>75 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "A heavy and powerful
+              pickaxe."
+            </td>
+          </tr>
+          <tr>
+            <td>Steel Pickaxe</td>
+            <td>2 Steel Bars, 1 Tool Handle, 1 Steel Nail</td>
+            <td>150 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "A lightweight and strong
+              pickaxe."
+            </td>
+          </tr>
+          <tr>
+            <td>Bluesteel Pickaxe</td>
+            <td>2 Refined Bluesteel, 1 Steel Handle, 1 Bluesteel Nail</td>
+            <td>300 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "A pickaxe made out of the
+              strongest metal known in the world."
+            </td>
+          </tr>
+          <tr>
+            <td>Darksteel Pickaxe</td>
+            <td>2 Darksteel, 1 Steel Handle, 1 Obsidian Nail</td>
+            <td>500 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "Darksteel is the
+              strongest, sharpest metal known to civilization. Fantastic for
+              mining."
+            </td>
+          </tr>
+          <tr>
+            <td>Adamantite Pickaxe</td>
+            <td>2 Adamantite Bars, 1 Steel Handle, 1 Adamantite Nail</td>
+            <td>750 Mining</td>
+            <td>
+              It is used to mine stone and ore nodes. "Sturdy Adamantite metal,
+              fantastic for breaking metal and stone!"
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Resources Section -->
-    <div class="section">
-        <h2>Downloadable Resources</h2>
-        <div class="resource">
-            <p><strong>Google Sheets Guide:</strong> <a href="https://example.com/sheets-guide.pdf" download>Download PDF</a></p>
-        </div>
-        <div class="resource">
-            <p><strong>Iframe Cheat Sheet:</strong> <a href="https://example.com/iframe-cheatsheet.pdf" download>Download PDF</a></p>
-        </div>
+    <!-- Melee Weapons Section -->
+    <div class="content">
+      <h2>Melee Weapons Crafting Recipes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image and Name</th>
+            <th>Cost</th>
+            <th>Damage</th>
+            <th>Usage and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wooden Club</td>
+            <td>4 Wood, 1 Leaf, 1 Rope</td>
+            <td>15 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights. "It
+              will get the job done, if you swing it hard enough!"
+            </td>
+          </tr>
+          <tr>
+            <td>Stone Knife</td>
+            <td>4 Stone, 1 Hide, 2 Wooden Rod</td>
+            <td>20 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights. "It's
+              a sharpened stone on a stick. It's not good at killing things, but
+              if you stab hard enough and long enough, it'll work!"
+            </td>
+          </tr>
+          <tr>
+            <td>Bronze Sword</td>
+            <td>3 Copper Bars, 1 Hide, 2 Wooden Rod</td>
+            <td>30 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights. "A
+              tried and true weapon, bronze swords have been used since ancient
+              times."
+            </td>
+          </tr>
+          <tr>
+            <td>Iron Sword</td>
+            <td>3 Iron Bars, 1 Hide, 2 Wooden Rod</td>
+            <td>40 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights. "An
+              incredibly heavy sword, but it makes up for it with power!"
+            </td>
+          </tr>
+          <tr>
+            <td>Steel Sword</td>
+            <td>3 Steel Bars, 1 Hide, 2 Wooden Rod</td>
+            <td>50 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights.
+              "Lightweight and strong, you can't beat a good steel sword!"
+            </td>
+          </tr>
+          <tr>
+            <td>Bluesteel Sword</td>
+            <td>3 Refined Bluesteel, 1 Hide, 2 Wooden Rod</td>
+            <td>60 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights. "A
+              sword made out of the strongest material in the world."
+            </td>
+          </tr>
+          <tr>
+            <td>Atlantean Trident</td>
+            <td>1 Hide, 2 Ropes, 3 Atlantean Steel, 5 Corals</td>
+            <td>60 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, escaping, and boss
+              fights. "The mighty weapon of the Atlantean warriors! It has the
+              unique ability to allow the user to dash underwater, unlike any
+              other weapon!"
+            </td>
+          </tr>
+          <tr>
+            <td>Darksteel Sword</td>
+            <td>3 Darksteel, 1 Hide, 2 Rope</td>
+            <td>70 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights.
+              "Darksteel is the strongest sharpest metal known to civilization.
+              There is almost nothing more deadly in combat."
+            </td>
+          </tr>
+          <tr>
+            <td>Katana</td>
+            <td>3 Adamantite, 2 Hide, 2 Rope</td>
+            <td>80 Damage</td>
+            <td>
+              It is a melee weapon used for PVP, hunting, and boss fights.
+              "Adamantite is the best material for crafting the ultimate
+              weapon."
+            </td>
+          </tr><tr>
+            <th>Image and Name</th>
+            <th>Cost</th>
+            <th>Damage</th>
+            <th>Usage and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bow</td>
+            <td>2 Wooden Rod, 2 Rope</td>
+            <td>10 Damage</td>
+            <td>
+              It serves as a ranged means of attack for PVP, hunting, and boss
+              fights. Upon loosing, it consumes one arrow as ammunition. "A
+              primitive, but effective hunting bow."
+            </td>
+          </tr>
+          <tr>
+            <td>Compact Bow</td>
+            <td>4 Wooden Rod, 2 Copper Nails, 4 Rope</td>
+            <td>15 Damage</td>
+            <td>
+              It serves as a ranged means of attack for PVP, hunting, and boss
+              fights. Upon loosing, it consumes one arrow as ammunition. "More
+              advanced than a hunting bow, a compact bow does more damage per
+              shot."
+            </td>
+          </tr>
+          <tr>
+            <td>Longbow</td>
+            <td>6 Wooden Rod, 2 Iron Nails, 6 Rope</td>
+            <td>20 Damage</td>
+            <td>
+              It serves as a ranged means of attack for PVP, hunting, and boss
+              fights. Upon loosing, it consumes one arrow as ammunition.
+              "Longbows are extremely powerful bows, but they take a lot of
+              strength to draw back and fire!"
+            </td>
+          </tr>
+          <tr>
+            <td>Crossbow</td>
+            <td>8 Wooden Rod, 2 Steel Nails, 8 Rope</td>
+            <td>22 Damage</td>
+            <td>
+              It serves as a ranged means of attack for PVP, hunting, and boss
+              fights. Upon firing, it consumes one arrow as ammunition.
+              "Crossbows revolutionized warfare. They're easy to load and quick
+              to fire accurately. Very deadly."
+            </td>
+          </tr>
+          <tr>
+            <td>Arbalest</td>
+            <td>12 Wooden Rod, 2 Bluesteel Nails, 12 Rope</td>
+            <td>25 Damage</td>
+            <td>
+              It serves as a ranged means of attack for PVP, hunting, and boss
+              fights. Upon firing, it consumes one arrow as ammunition. "The
+              Arbalest is a bigger, more powerful version of a crossbow, that
+              comes with a built-in crank to increase firing power."
+            </td>
+          </tr>
+          <tr>
+            <td>Musket</td>
+            <td>10 Wooden Rods, 10 Rope, 5 Darksteel Bars</td>
+            <td>50 Damage</td>
+            <td>
+              It serves as a ranged means of attack for PVP, hunting, and boss
+              fights. Upon firing, it consumes one Musket Ball as ammunition.
+              "Invented in the early middle ages, Muskets are powerful, but
+              extremely slow to fire and expensive to maintain."
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
+    <!-- Miscellaneous Tools Section -->
+    <div class="content">
+      <h2>Miscellaneous Tools Crafting Recipes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image and Name</th>
+            <th>Cost</th>
+            <th>Damage</th>
+            <th>Usage and Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sharp Rock</td>
+            <td>3 Stone or on Spawn</td>
+            <td>10 Damage</td>
+            <td>
+              The starter omni-tool everyone used at one point. Not good at
+              anything but needed. "The most basic kind of tool, it can be used
+              to gather any kind of resource. Though it isn't very good at it."
+            </td>
+          </tr>
+          <tr>
+            <td>Hammer</td>
+            <td>2 Wood</td>
+            <td>N/A</td>
+            <td>Builds Structures and Boats using materials from the player inventory.</td>
+          </tr>
+          <tr>
+            <td>Shovel</td>
+            <td>1 Chiseled Stone, 1 Tool Handle, 2 Rope</td>
+            <td>N/A</td>
+            <td>
+              Makes farm land for crops to be planted and grown. Can also make
+              pathing by using stone.
+            </td>
+          </tr>
+          <tr>
+            <td>Torch</td>
+            <td>4 Coal, 1 Tool Handle, 2 Rope</td>
+            <td>1 Damage</td>
+            <td>Lights up an area around the player when held.</td>
+          </tr>
+          <tr>
+            <td>Farming Scythe</td>
+            <td>2 Steel Bar, 1 Steel Nail, 2 Tool Handle</td>
+            <td>20 Damage</td>
+            <td>
+              The Farming Scythe auto collects crops and has extra reach.
+            </td>
+          </tr>
+          <tr>
+            <td>Repair Tool</td>
+            <td>3 Copper Bars, 2 Ropes, 1 Tool Handle</td>
+            <td>N/A</td>
+            <td>Use this to repair structures.</td>
+          </tr>
+          <tr>
+            <td>Paint Brush</td>
+            <td>Purchase the "Paint Tool!" Gamepass for ⏣ 399</td>
+            <td>N/A</td>
+            <td>Use this to paint your constructions.</td>
+          </td>
+          </tr>
+    </tbody>
+  </table>
+</div>
+<div class="content">
+  <h2>Fishing Rods</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Image and Name</th>
+        <th>Cost</th>
+        <th>Damage</th>
+        <th>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bronze Fishing Rod</td>
+        <td>4 Wooden Plank, 5 Rope, 3 Bronze Ingot</td>
+        <td>N/A</td>
+        <td>Use this to catch fish.</td>
+      </tr>
+      <tr>
+        <td>Iron Fishing Rod</td>
+        <td>4 Wooden Plank, 5 Rope, 3 Iron Ingot</td>
+        <td>N/A</td>
+        <td>Use this to catch better fish.</td>
+      </tr>
+      <tr>
+        <td>Steel Fishing Rod</td>
+        <td>4 Wooden Plank, 5 Rope, 3 Steel Ingot</td>
+        <td>N/A</td>
+        <td>Use this to catch even better fish.</td>
+      </tr>
+      <tr>
+        <td>Bluesteel Fishing Rod</td>
+        <td>4 Wooden Plank, 5 Rope, 3 Bluesteel Ingot</td>
+        <td>N/A</td>
+        <td>Use this to catch good fish.</td>
+      </tr>
+      <tr>
+        <td>Darksteel Fishing Rod</td>
+        <td>4 Wooden Plank, 5 Rope, 3 Darksteel Ingot</td>
+        <td>N/A</td>
+        <td>Use this to catch the best fish.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="content">
+  <h2>Food Recipes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Health Restored</th>
+        <th>Hunger Restored</th>
+        <th>Buffs</th>
+        <th>Recipe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Carrot</td>
+        <td>2</td>
+        <td>20</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Berry</td>
+        <td>2</td>
+        <td>20</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Cabbage</td>
+        <td>3</td>
+        <td>30</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Pepper</td>
+        <td>-1</td>
+        <td>20</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Mushroom</td>
+        <td>2</td>
+        <td>20</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Egg</td>
+        <td>2</td>
+        <td>25</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Meat</td>
+        <td>-10</td>
+        <td>50</td>
+        <td>Food Poisoning (-10 max health)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Cooked Meat</td>
+        <td>10 (2*5)</td>
+        <td>60</td>
+        <td>Ate Meal (+5 max health)</td>
+        <td>1 Meat, 1 Leaf</td>
+      </tr>
+      <tr>
+        <td>Meat Hunk</td>
+        <td>20 (2*10)</td>
+        <td>250</td>
+        <td>Ate Good Meal (+10 max health)</td>
+        <td>3 Cooked Meat, 1 Leaf</td>
+      </tr>
+      <tr>
+        <td>Rib Meal</td>
+        <td>50 (2*25)</td>
+        <td>750</td>
+        <td>Ate Amazing Meal (+15 max health)</td>
+        <td>3 Meat Hunk, 2 Bowl</td>
+      </tr>
+      <tr>
+        <td>Chicken</td>
+        <td>-10</td>
+        <td>100</td>
+        <td>Food Poisoning (-10 max health)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Cooked Chicken</td>
+        <td>15 (2*7.5)</td>
+        <td>150</td>
+        <td>Ate Meal (+5 max health)</td>
+        <td>1 Chicken, 1 Leaf</td>
+      </tr>
+      <tr>
+        <td>Cabbage Salad</td>
+        <td>20 (2*10)</td>
+        <td>300</td>
+        <td>Ate Meal (+5 max health)</td>
+        <td>1 Bowl, 6 Leaf, 6 Cabbage</td>
+      </tr>
+      <tr>
+        <td>Soup Bowl</td>
+        <td>10 (2*5)</td>
+        <td>100</td>
+        <td>Ate Meal (+5 max health)</td>
+        <td>1 Bowl, 1 Mushroom, 3 Berry</td>
+      </tr>
+      <tr>
+        <td>Delicious Stew</td>
+        <td>40 (2*20)</td>
+        <td>500</td>
+        <td>Ate Good Meal (+10 max health)</td>
+        <td>5 Soup Bowl, 3 Bowl</td>
+      </tr>
+      <tr>
+        <td>Delicious Meal</td>
+        <td>40 (2*20)</td>
+        <td>500</td>
+        <td>Ate Good Meal (+10 max health)</td>
+        <td>3 Cooked Meat, 2 Bread, 2 Bowl</td>
+      </tr>
+      <tr>
+        <td>Bread</td>
+        <td>10 (2*5)</td>
+        <td>100</td>
+        <td>Ate Meal (+5 max health)</td>
+        <td>6 Wheat, 1 Egg</td>
+      </tr>
+      <tr>
+        <td>Sandwich</td>
+        <td>40 (2*20)</td>
+        <td>500</td>
+        <td>Ate Good Meal (+10 max health)</td>
+        <td>2 Cooked Meat, 2 Bread, 4 Cabbage</td>
+      </tr>
+      <tr>
+        <td>Carrot Pie</td>
+        <td>40 (2*20)</td>
+        <td>500</td>
+        <td>Ate Good Meal (+10 max health)</td>
+        <td>4 Bread, 15 Carrot, 2 Egg</td>
+      </tr>
+      <tr>
+        <td>Berry Pie</td>
+        <td>40 (2*20)</td>
+        <td>500</td>
+        <td>Ate Good Meal (+10 max health)</td>
+        <td>4 Bread, 15 Berry, 2 Egg</td>
+      </tr>
+      <tr>
+        <td>Spicy Vegetable Meal</td>
+        <td>40 (2*20)</td>
+        <td>600</td>
+        <td>
+          Ate Good Meal (+10 max health), Ate Spicy Food (+5% speed)
+        </td>
+        <td>6 Pepper, 2 Cabbage Salad</td>
+      </tr>
+      <tr>
+        <td>Spicy Cooked Chicken</td>
+        <td>40 (2*20)</td>
+        <td>600</td>
+        <td>
+          Ate Good Meal (+10 max health), Ate Spicy Food (+5% speed)
+        </td>
+        <td>1 Cooked Chicken, 6 Cabbage, 6 Pepper</td>
+      </tr>
+      <tr>
+        <td>Spicy Meat Meal</td>
+        <td>50 (2*25)</td>
+        <td>850</td>
+        <td>
+          Ate Spicy Food (+5% speed), Ate Amazing Meal (+15 max health)
+        </td>
+        <td>1 Rib Meal, 6 Cabbage, 6 Pepper</td>
+      </tr>
+      <tr>
+        <td>Hearty Stew</td>
+        <td>60 (2*30)</td>
+        <td>1000</td>
+        <td>
+          Ate Good Meal (+10 max health), Ate Meal (+5 max health)
+        </td>
+        <td>2 Delicious Stew, 10 Carrot, 10 Cabbage</td>
+      </tr>
+      <tr>
+        <td>Fish</td>
+        <td>-10</td>
+        <td>50</td>
+        <td>Food Poisoning (-10 max health)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Spicy Fish Meal</td>
+        <td>50 (2*25)</td>
+        <td>600</td>
+        <td>
+          Ate Good Meal (+10 max health), Ate Spicy Food (+5% speed)
+        </td>
+        <td>9 Cooked Fish, 6 Cabbage, 6 Pepper</td>
+      </tr>
+      <tr>
+        <td>Cooked Fish</td>
+        <td>5 (2*2.5)</td>
+        <td>60</td>
+        <td></td>
+        <td>1 Meat</td>
+      </tr>
+      <tr>
+        <td>Sushi Meal</td>
+        <td>40 (2*20)</td>
+        <td>600</td>
+        <td>
+          Ate Meal (+5 max health), Ate Good Meal (+10 max health)
+        </td>
+        <td>9 Cooked Fish, 1 Meat Hunk, 6 Carrot, 6 Cabbage</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    <!-- Add other sections for Ranged Weapons, Miscellaneous Tools, and Fishing Rods -->
+    <br>
     <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 Tutorial Hub | Powered by our community</p>
-    </footer>
-</body>
+  </body>
 </html>
